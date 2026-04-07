@@ -9,12 +9,12 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/ai',airoutes)
+app.use('/ai', airoutes)
 
-app.get('/', (req,res)=>{
+app.get('/', (req, res) => {
     res.send("Hello World")
 })
 
-app.listen(PORT , ()=>{
+app.listen(PORT, () => {
     console.log(`Server has been started on http://localhost:${PORT}`)
 })

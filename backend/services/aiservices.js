@@ -5,7 +5,7 @@ const genAI = new GoogleGenerativeAI(process.env.API);
 const model = genAI.getGenerativeModel({
     model: "gemini-2.5-flash",
     systemInstruction: `
-                Here’s a solid system instruction for your AI code reviewer:
+                Here's a solid system instruction for your AI code reviewer:
 
                 AI System Instruction: Senior Code Reviewer (7+ Years of Experience)
 
@@ -90,4 +90,4 @@ async function generateContent(prompt) {
 
 }
 
-module.exports = generateContent    
+module.exports = generateContent

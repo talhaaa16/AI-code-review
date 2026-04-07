@@ -22,3 +22,22 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Production
+build/
+dist/
+/out/
+
+# Tests
+coverage/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
