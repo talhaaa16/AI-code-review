@@ -10,12 +10,12 @@ import gsap from 'gsap'
 import './App.css'
 
 function App() {
-  const [ code, setCode ] = useState(`function sum() {
+  const [code, setCode] = useState(`function sum() {
   return 1 + 1
 }`)
 
-  const [ review, setReview ] = useState(``)
-  const [ loading, setLoading ] = useState(false)
+  const [review, setReview] = useState(``)
+  const [loading, setLoading] = useState(false)
   const loaderRef = useRef(null)
 
   useEffect(() => {
@@ -56,12 +56,16 @@ function App() {
         pointerEvents: 'none'
       })
     }
-  }, [ loading ])
+  }, [loading])
 
   async function reviewCode() {
     setLoading(true)
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:7011'}/ai/get-review`, { code })
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:7011';
+
+      const normalizedApiUrl = apiUrl.startsWith('http') ? apiUrl : `https://${apiUrl}`;
+
+      const response = await axios.post(`${normalizedApiUrl}/ai/get-review`, { code })
       setReview(response.data)
     } catch (error) {
       console.error("Review failed:", error)
@@ -95,7 +99,7 @@ function App() {
             <div className="loader-circle"></div>
             <div className="loader-text">AI is reviewing your code...</div>
           </div>
-          <Markdown rehypePlugins={[ rehypeHighlight ]}>
+          <Markdown rehypePlugins={[rehypeHighlight]}>
             {review || "### Hello!\nPaste your code and click 'Review Code' to get AI-powered feedback."}
           </Markdown>
         </div>
