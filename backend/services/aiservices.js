@@ -1,8 +1,4 @@
-const { Mistral } = require('@mistralai/mistralai');
 require('dotenv').config();
-
-const apiKey = process.env.MISTRAL_API_KEY;
-const client = new Mistral({ apiKey });
 
 const systemInstruction = `
                 ### GUARDRAILS & SECURITY:
@@ -97,6 +93,10 @@ const systemInstruction = `
 
 async function generateContent(prompt) {
     try {
+        const { Mistral } = await import('@mistralai/mistralai');
+        const apiKey = process.env.MISTRAL_API_KEY;
+        const client = new Mistral({ apiKey });
+
         const chatResponse = await client.chat.complete({
             model: "mistral-small-latest",
             messages: [
