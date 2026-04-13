@@ -2,7 +2,6 @@
 
 An intelligent, full-stack code analysis tool that not only identifies issues in your code but also provides **one-click automated fixes**. Powered by **Mistral AI** and built with a premium, high-performance developer experience in mind.
 
-![Project Preview](https://raw.githubusercontent.com/talhaaa16/AI-code-review/main/preview.png)
 
 ## 🌟 Key Features
 
@@ -71,12 +70,6 @@ An intelligent, full-stack code analysis tool that not only identifies issues in
 | Variable | Description |
 |----------|-------------|
 | `VITE_API_URL` | The URL of your running backend (Local or Vercel) |
-
-## ⌨️ Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `Ctrl + Enter` | Trigger AI Code Review (Focus must be in Editor) |
 
 ## 🛡️ Security & Privacy
 This application uses strict guardrails. It identifies and rejects non-technical chat requests and focus exclusively on code review tasks to ensure API efficiency and security.
