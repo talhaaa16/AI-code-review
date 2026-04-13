@@ -83,8 +83,12 @@ main {
   user-select: none;
   border-radius: 0.75rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .left .review:hover {
@@ -92,10 +96,24 @@ main {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
 }
 
+.key-hint {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s;
+}
+
+.left .review:hover .key-hint {
+  opacity: 1;
+}
+
 .right {
   padding: 2rem;
   overflow-y: auto;
   line-height: 1.6;
+  position: relative;
 }
 
 .right h1, .right h2, .right h3 {
@@ -143,4 +161,28 @@ main {
   font-weight: 500;
   letter-spacing: 0.05em;
   color: var(--text-dim);
+}
+
+/* Apply Fix Button */
+.apply-fix-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+.apply-fix-btn:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: #22d3ee;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
 }
