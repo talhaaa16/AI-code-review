@@ -18,3 +18,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server has been started on http://localhost:${PORT}`)
 })
+
+module.exports = app
