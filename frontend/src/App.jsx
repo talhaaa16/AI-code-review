@@ -17,49 +17,22 @@ function App() {
   const [review, setReview] = useState(``)
   const [fixedCode, setFixedCode] = useState(null)
   const [loading, setLoading] = useState(false)
-  const loaderRef = useRef(null)
+  const isLoadingRef = useRef(false)
 
   useEffect(() => {
     prism.highlightAll()
   }, [])
 
-  useEffect(() => {
-    if (loading) {
-      gsap.to(loaderRef.current, {
-        opacity: 1,
-        duration: 0.4,
-        pointerEvents: 'all'
-      })
-      gsap.to(".loader-circle", {
-        rotate: 360,
-        repeat: -1,
-        duration: 1.2,
-        ease: "power2.inOut"
-      })
-      gsap.to(".loader-circle", {
-        scale: 1.2,
-        repeat: -1,
-        yoyo: true,
-        duration: 0.6,
-        ease: "sine.inOut"
-      })
-      gsap.to(".loader-text", {
-        y: 5,
-        repeat: -1,
-        yoyo: true,
-        duration: 1,
-        ease: "sine.inOut"
-      })
-    } else {
-      gsap.to(loaderRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        pointerEvents: 'none'
-      })
-    }
-  }, [loading])
 
   async function reviewCode() {
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true;
+
+    if (!code.trim()) {
+      setReview("### 💡 No code to review\nPlease paste some code in the editor on the left before clicking review.");
+      return;
+    }
+
     setLoading(true)
     setFixedCode(null)
     try {
@@ -101,6 +74,7 @@ function App() {
       setReview(friendlyMessage)
     } finally {
       setLoading(false)
+      isLoadingRef.current = false;
     }
   }
 
@@ -133,7 +107,10 @@ function App() {
               }}
             />
           </div>
-          <div onClick={reviewCode} className="review">
+          <div
+            onClick={reviewCode}
+            className={`review ${loading ? 'disabled' : ''}`}
+          >
             Review Code
             <span className="key-hint">Ctrl + Enter</span>
           </div>
@@ -142,10 +119,12 @@ function App() {
           {fixedCode && (
             <div onClick={applyFixes} className="apply-fix-btn">Apply Recommended Fixes</div>
           )}
-          <div ref={loaderRef} className="loader-container">
-            <div className="loader-circle"></div>
-            <div className="loader-text">AI is reviewing your code...</div>
-          </div>
+          {loading && (
+            <div className="loader-container">
+              <div className="loader-circle"></div>
+              <div className="loader-text">AI is reviewing your code...</div>
+            </div>
+          )}
           <Markdown rehypePlugins={[rehypeHighlight]}>
             {review || "### Hello!\nPaste your code and click 'Review Code' to get AI-powered feedback."}
           </Markdown>
