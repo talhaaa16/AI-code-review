@@ -10,7 +10,7 @@ app.set('trust proxy', 1)
 
 const aiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 10,
+    max: 7,
     message: { message: "Too many review requests from this Source, please try again some time." },
     standardHeaders: true,
     legacyHeaders: false,
