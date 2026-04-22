@@ -86,9 +86,17 @@ function App() {
   }
 
   return (
-    <>
+    <div className="app-container">
+      <header className="app-header">
+        <div className="badge">AI-Powered Code Reviewer</div>
+        <h1>Smart <span className="text-gradient">Code Review</span> Assistant ✨</h1>
+        <p>An intelligent code review tool that analyzes your code, provides detailed feedback,<br />and suggests improvements to help you write better code.</p>
+      </header>
       <main>
         <div className="left">
+          <div className="panel-header">
+            <span className="panel-title">&lt;/&gt; Code Review Assistant</span>
+          </div>
           <div className="code">
             <Editor
               value={code}
@@ -119,18 +127,28 @@ function App() {
           {fixedCode && (
             <div onClick={applyFixes} className="apply-fix-btn">Apply Recommended Fixes</div>
           )}
-          {loading && (
-            <div className="loader-container">
-              <div className="loader-circle"></div>
-              <div className="loader-text">AI is reviewing your code...</div>
+          {loading ? (
+            <div className="skeleton-wrapper">
+              <div className="skeleton-title shimmer"></div>
+              <div className="skeleton-line shimmer"></div>
+              <div className="skeleton-line shimmer" style={{ width: '85%' }}></div>
+              <div className="skeleton-line shimmer" style={{ width: '60%' }}></div>
+              
+              <div className="skeleton-code shimmer"></div>
+              
+              <div className="skeleton-subtitle shimmer"></div>
+              <div className="skeleton-bullet shimmer"></div>
+              <div className="skeleton-bullet shimmer" style={{ width: '70%' }}></div>
+              <div className="skeleton-bullet shimmer" style={{ width: '80%' }}></div>
             </div>
+          ) : (
+            <Markdown rehypePlugins={[rehypeHighlight]}>
+              {review || "### Hello!\nPaste your code and click 'Review Code' to get AI-powered feedback."}
+            </Markdown>
           )}
-          <Markdown rehypePlugins={[rehypeHighlight]}>
-            {review || "### Hello!\nPaste your code and click 'Review Code' to get AI-powered feedback."}
-          </Markdown>
         </div>
       </main>
-    </>
+    </div>
   )
 }
 
