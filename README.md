@@ -1,5 +1,6 @@
 # 🚀 AI Code Reviewer
 
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 An intelligent, full-stack code analysis tool that not only identifies issues in your code but also provides **one-click automated fixes**. Powered by **Mistral AI** and built with a premium, high-performance developer experience in mind.
 
 
@@ -7,23 +8,24 @@ An intelligent, full-stack code analysis tool that not only identifies issues in
 
 - **Senior AI Persona**: Feedback is provided by a simulated Senior Developer (7+ years exp) focusing on security, performance, and scalability.
 - **⚡ One-Click Fixes**: Don't just read about errors—fix them instantly. Our "Apply Recommended Fixes" feature swaps your code with AI-improved versions in one click.
-- **Premium UI/UX**: Overhauled with a "Midnight & Cyan" glassmorphism theme, custom scrollbars, and smooth **GSAP** animations.
-- **Dark Mode Syntax Highlighting**: Integrated with PrismJS for a beautiful, high-contrast editing experience.
+- **Premium UI/UX**: Overhauled with an ultra-dark navy theme, glowing gradient borders, and sleek typography.
+- **Shimmering Skeleton Screens**: A top-tier loading experience that perfectly predicts the AI's response layout while you wait.
 - **Keyboard Shortcuts**: Productivity-first design with `Ctrl + Enter` for instant reviews.
+- **Traffic Analytics**: Integrated natively with `@vercel/analytics` to monitor real-time usage.
+- **Rate Limiting & Abuse Prevention**: Backend IP tracking via `express-rate-limit` prevents spam and API quota exhaustion.
 - **Guardrails & Security**: Built-in protection against prompt injection and off-topic requests.
-
 ## 🛠️ Tech Stack
 
 ### Frontend
 - **Framework**: React.js (Vite)
-- **Animations**: GSAP (GreenSock Animation Platform)
 - **Editor**: `react-simple-code-editor`
-- **Highlighting**: PrismJS
-- **Communication**: Axios
+- **Highlighting**: PrismJS & `rehype-highlight`
+- **Analytics**: Vercel Analytics (`@vercel/analytics`)
 
 ### Backend
 - **Server**: Node.js & Express
-- **AI Engine**: Mistral AI (`mistral-small-latest`)
+- **AI Engine**: Mistral AI SDK (`mistral-small-latest`)
+- **Security**: `express-rate-limit` (IP-based rate limiting)
 - **Environment**: Dotenv for secure configuration
 - **CORS**: Configured for secure cross-origin communication
 
