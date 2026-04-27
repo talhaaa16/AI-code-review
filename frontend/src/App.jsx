@@ -100,7 +100,10 @@ function App() {
           <div className="code">
             <Editor
               value={code}
-              onValueChange={code => setCode(code)}
+              onValueChange={newCode => {
+                setCode(newCode);
+                setFixedCode(null);
+              }}
               highlight={code => prism.highlight(code, prism.languages.javascript, "javascript")}
               onKeyDown={(e) => {
                 if (e.ctrlKey && e.key === 'Enter') {
